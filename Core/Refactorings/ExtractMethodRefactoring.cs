@@ -14,7 +14,9 @@ namespace Core.Refactorings
         public string Apply(string code, RefactoringParameters parameters)
         {
             // Отримуємо параметри
-            var startLine = int.Parse(parameters.Parameters["startLine"]);
+            var startLine = parameters.Parameters.ContainsKey("startLine")
+                ? int.Parse(parameters.Parameters["startLine"])
+                : throw new ArgumentException("");
             var endLine = int.Parse(parameters.Parameters["endLine"]);
             var methodName = parameters.Parameters["methodName"];
 
